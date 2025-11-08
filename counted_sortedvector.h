@@ -27,6 +27,7 @@ public:
     bool find(T value) const;
     int count(T value) const;
     void erase(T value);
+    void eraseall(T value);
     void clear();
     void printall() const;
     int total_size() const;
@@ -97,6 +98,14 @@ void counted_sortedvector<T>::erase(T value) {
         if (data[index].second == 0) {
             data.erase(data.begin() + index);
         }
+    }
+}
+
+template <class T>
+void counted_sortedvector<T>::eraseall(T value) {
+    int index = findIndex(value);
+    if (index != -1) {
+        data.erase(data.begin() + index);
     }
 }
 

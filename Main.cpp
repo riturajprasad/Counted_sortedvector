@@ -10,10 +10,10 @@ int main()
 	csv1.insert(3);
 
 	cout << "Index of " << 3 << " is " << csv1.findIndex(3) << endl;
-	if (csv1.find(7))
-		cout << 7 << " Found" << endl;
+	if (csv1.find(3))
+		cout << 3 << " Found" << endl;
 	else
-		cout << 7 << " Not found" << endl;
+		cout << 3 << " Not found" << endl;
 	cout << "Count of " << 3 << " is " << csv1.count(3) << endl;
 	cout << "Print all value: " << endl;
 	csv1.printall();
@@ -22,6 +22,10 @@ int main()
 
 	csv1.erase(1);
 	cout << "Print all value (after erase(1)): " << endl;
+	csv1.printall();
+
+	csv1.eraseall(3);
+	cout << "Print all value (after eraseall(3)): " << endl;
 	csv1.printall();
 
 	csv1.clear();
