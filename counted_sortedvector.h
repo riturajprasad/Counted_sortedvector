@@ -37,12 +37,8 @@ public:
 template <class T>
 bool counted_sortedvector<T>::isempty() const
 {
-    if (data.size() == 0)
-    {
-        cout << "counted_sortedvector is empty" << endl;
-        return true;
-    }
-    return false;
+    if (data.empty()) cout << "counted_sortedvector is empty" << endl;
+    return data.empty();
 }
 
 template <class T>

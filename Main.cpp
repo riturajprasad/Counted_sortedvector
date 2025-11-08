@@ -1,38 +1,14 @@
-//#include "counted_sortedvector.h"
-#include "count_sortedvector.h"
-#include <iostream>
-
-class A
-{
-private:
-	int x;
-	double y;
-public:
-	A(int x, double y) : x(x), y(y) {}
-	void print() const
-	{
-		cout << x << " & " << y << endl;
-	}
-	bool operator<(const A& other) const {
-		// define your sorting rule
-		return x < other.x;
-		// return (x == other.x) ? (y < other.y) : (x < other.x);
-	}
-};
+#include "counted_sortedvector.h"
 
 int main()
 {
-	count_sortedvector<A> av;
-	A a1(1, 2.1);
-	A a2(4, 3.5);
-	A a3(1, 2.1);
-	A a4(3, 2.4);
-	av.insert(a1);
-	av.insert(a2);
-	av.insert(a3);
-	av.insert(a4);
-	for (auto a : av)
-		a.print();
+	counted_sortedvector<int> av;
+	av.insert(73);
+	av.insert(80);
+	av.insert(76);
+	av.insert(75);
+	//av.clear();
+	av.printall();
 
 	// Test 2 fail
 	/*counted_sortedvector<A> av;
