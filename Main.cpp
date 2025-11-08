@@ -1,5 +1,6 @@
-#include "counted_sortedvector.h"
+//#include "counted_sortedvector.h"
 #include "count_sortedvector.h"
+#include <iostream>
 
 class A
 {
@@ -14,13 +15,25 @@ public:
 	}
 	bool operator<(const A& other) const {
 		// define your sorting rule
-		// return x < other.x;
-		return (x == other.x) ? (y < other.y) : (x < other.x);
+		return x < other.x;
+		// return (x == other.x) ? (y < other.y) : (x < other.x);
 	}
 };
 
 int main()
 {
+	count_sortedvector<A> av;
+	A a1(1, 2.1);
+	A a2(4, 3.5);
+	A a3(1, 2.1);
+	A a4(3, 2.4);
+	av.insert(a1);
+	av.insert(a2);
+	av.insert(a3);
+	av.insert(a4);
+	for (auto a : av)
+		a.print();
+
 	// Test 2 fail
 	/*counted_sortedvector<A> av;
 	A a1(1, 2.1);
