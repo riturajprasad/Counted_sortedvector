@@ -4,10 +4,13 @@ int main()
 {
 	counted_sortedvector<int> av;
 	av.insert(73);
+	av.insert(73);
+	av.insert(73);
+	av.insert(73);
 	av.insert(80);
 	av.insert(76);
 	av.insert(75);
-	//av.clear();
+	av.erase(73);
 	av.printall();
 
 	// Test 2 fail

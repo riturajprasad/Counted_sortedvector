@@ -58,17 +58,14 @@ void counted_sortedvector<T>::insert(T value) {
     int index = findIndex(value);
     if (index != -1) {
         data[index].second++;
+        return;
     }
-    else {
-        auto it = lower_bound(
-            data.begin(), data.end(),
-            make_pair(value, 1),
-            [](const pair<T, int>& a, const pair<T, int>& b) {
-                return a.first < b.first;
-            }
-        );
-        data.insert(it, { value, 1 });
+    int pos = 0;
+    while (pos < data.size() && data[pos].first < value) {
+        pos++;
     }
+    // insert of vector
+    data.insert(data.begin() + pos, { value, 1 });
 }
 
 template <class T>
