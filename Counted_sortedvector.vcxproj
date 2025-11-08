@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="counted_sortedvector.h" />
+    <ClInclude Include="count_sortedvectror.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

@@ -1,8 +1,40 @@
 #include "counted_sortedvector.h"
+#include "count_sortedvector.h"
+
+class A
+{
+private:
+	int x;
+	double y;
+public:
+	A(int x, double y) : x(x), y(y) {}
+	void print() const
+	{
+		cout << x << " & " << y << endl;
+	}
+	bool operator<(const A& other) const {
+		// define your sorting rule
+		// return x < other.x;
+		return (x == other.x) ? (y < other.y) : (x < other.x);
+	}
+};
 
 int main()
 {
-	counted_sortedvector<int> csv1;
+	// Test 2 fail
+	/*counted_sortedvector<A> av;
+	A a1(1, 2.1);
+	A a2(4, 3.5);
+	A a3(1, 2.1);
+	A a4(3, 2.4);
+	av.insert(a1);
+	av.insert(a2);
+	av.insert(a3);
+	av.insert(a4);
+	av.printall();*/
+
+	// Test 1 pass
+	/*counted_sortedvector<int> csv1;
 	csv1.insert(5);
 	csv1.insert(1);
 	csv1.insert(3);
@@ -30,7 +62,7 @@ int main()
 
 	csv1.clear();
 	cout << "Print all value (after clear()): " << endl;
-	csv1.printall();
+	csv1.printall();*/
 
 	return 0;
 }

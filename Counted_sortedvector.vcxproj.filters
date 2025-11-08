@@ -18,6 +18,9 @@
     <ClInclude Include="counted_sortedvector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="count_sortedvectror.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
