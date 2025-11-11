@@ -1,29 +1,48 @@
 #include "counted_sortedvector.h"
+#include <tuple> // for using tie
+
+class A
+{
+	int x;
+	double y;
+public:
+	A(int x, double y) : x(x), y(y) {}
+	bool operator<(const A& a2) const
+	{
+		/*if (x < a2.x) return true;
+		else if (x > a2.x) return false;
+		else
+		{
+			if (y < a2.y) return true;
+			else return false;
+		}*/
+		return tie(x, y) < tie(a2.x, a2.y);
+	}
+	bool operator==(const A& a2) const
+	{
+		return (x == a2.x && y == a2.y);
+	}
+	friend ostream& operator<<(ostream& out, const A& a2);
+};
+ostream& operator<<(ostream& out, const A& a2) {
+	out << a2.x << " " << a2.y << "\t";
+	return out;
+}
 
 int main()
 {
-	counted_sortedvector<int> av;
-	av.insert(73);
-	av.insert(73);
-	av.insert(73);
-	av.insert(73);
-	av.insert(80);
-	av.insert(76);
-	av.insert(75);
-	av.erase(73);
-	av.printall();
-
-	// Test 2 fail
-	/*counted_sortedvector<A> av;
-	A a1(1, 2.1);
-	A a2(4, 3.5);
-	A a3(1, 2.1);
-	A a4(3, 2.4);
+	// Test 2 pass if class give three operator code of "<" ; "==" ; "<<" ;
+	counted_sortedvector<A> av;
+	A a1(1, 1.3);
+	A a2(4, 4.7);
+	A a3(1, 1.3);
+	A a4(3, 3.1);
 	av.insert(a1);
 	av.insert(a2);
 	av.insert(a3);
 	av.insert(a4);
-	av.printall();*/
+	//av.eraseall(a1);
+	av.printall();
 
 	// Test 1 pass
 	/*counted_sortedvector<int> csv1;
