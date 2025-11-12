@@ -29,27 +29,28 @@ public:
     void erase(T value);
     void eraseall(T value);
     void clear();
-    void printall() const;
     int total_size() const;
     int unique_size() const;
+
+    auto begin() { return data.begin(); }
+    auto end() { return data.end(); }
+    auto begin() const { return data.begin(); }
+    auto end() const { return data.end(); }
 };
 
 template <class T>
 bool counted_sortedvector<T>::isempty() const
 {
-    if (data.empty()) cout << "counted_sortedvector is empty" << endl;
     return data.empty();
 }
 
 template <class T>
 int counted_sortedvector<T>::findIndex(const T& value) const {
-    int low = 0, high = data.size() - 1;
-    while (low <= high) {
-        int mid = (low + high) / 2;
-        if (data[mid].first == value) return mid;
-        else if (data[mid].first < value) low = mid + 1;
-        else high = mid - 1;
-    }
+    const auto it = lower_bound(data.begin(), data.end(), value,
+        [](const pair<T, int>& p, const T& val) { return p.first < val; }
+    );
+    if (it != data.end() && it->first == value)
+        return distance(data.begin(), it);
     return -1;
 }
 
@@ -60,12 +61,9 @@ void counted_sortedvector<T>::insert(T value) {
         data[index].second++;
         return;
     }
-    int pos = 0;
-    while (pos < data.size() && data[pos].first < value) {
-        pos++;
-    }
-    // insert of vector
-    data.insert(data.begin() + pos, { value, 1 });
+    auto pos = lower_bound(data.begin(), data.end(), value,
+        [](const pair<T, int>& p, const T& val) { return p.first < val; });
+    data.insert(pos, { value, 1 });
 }
 
 template <class T>
@@ -96,6 +94,7 @@ void counted_sortedvector<T>::erase(T value) {
 
 template <class T>
 void counted_sortedvector<T>::eraseall(T value) {
+    if (isempty()) return;
     int index = findIndex(value);
     if (index != -1) {
         data.erase(data.begin() + index);
@@ -109,20 +108,10 @@ void counted_sortedvector<T>::clear() {
 }
 
 template <class T>
-void counted_sortedvector<T>::printall() const {
-    if (isempty()) return;
-    for (auto& p : data) {
-        for (int i = 0; i < p.second; i++)
-            cout << p.first << " ";
-    }
-    cout << endl;
-}
-
-template <class T>
 int counted_sortedvector<T>::total_size() const {
     if (isempty()) return 0;
     int sum = 0;
-    for (auto& p : data) sum += p.second;
+    for (const auto& p : data) sum += p.second;
     return sum;
 }
 

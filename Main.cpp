@@ -25,7 +25,7 @@ public:
 	friend ostream& operator<<(ostream& out, const A& a2);
 };
 ostream& operator<<(ostream& out, const A& a2) {
-	out << a2.x << " " << a2.y << "\t";
+	out << "(" << a2.x << ", " << a2.y << ")  ";
 	return out;
 }
 
@@ -42,10 +42,20 @@ int main()
 	av.insert(a3);
 	av.insert(a4);
 	//av.eraseall(a1);
-	av.printall();
+	for (const auto& p : av) {
+		for (int i = 0; i < p.second; i++)
+			cout << p.first << " ";
+	}
+	cout << endl;
+
+	for (auto& p : av) {
+		cout << "[" << p.first << " x" << p.second << "]  ";
+	}
+	cout << endl;
 
 	// Test 1 pass
-	/*counted_sortedvector<int> csv1;
+	/*
+	counted_sortedvector<int> csv1;
 	csv1.insert(5);
 	csv1.insert(1);
 	csv1.insert(3);
@@ -59,21 +69,38 @@ int main()
 		cout << 3 << " Not found" << endl;
 	cout << "Count of " << 3 << " is " << csv1.count(3) << endl;
 	cout << "Print all value: " << endl;
-	csv1.printall();
+	for (const auto& p : csv1) {
+		for (int i = 0; i < p.second; i++)
+			cout << p.first << " ";
+	}
+	cout << endl;
 	cout << "Total size = " << csv1.total_size() << endl;
 	cout << "Unique size = " << csv1.unique_size() << endl;
 
 	csv1.erase(1);
 	cout << "Print all value (after erase(1)): " << endl;
-	csv1.printall();
+	for (const auto& p : csv1) {
+		for (int i = 0; i < p.second; i++)
+			cout << p.first << " ";
+	}
+	cout << endl;
 
 	csv1.eraseall(3);
 	cout << "Print all value (after eraseall(3)): " << endl;
-	csv1.printall();
+	for (const auto& p : csv1) {
+		for (int i = 0; i < p.second; i++)
+			cout << p.first << " ";
+	}
+	cout << endl;
 
 	csv1.clear();
 	cout << "Print all value (after clear()): " << endl;
-	csv1.printall();*/
+	for (const auto& p : csv1) {
+		for (int i = 0; i < p.second; i++)
+			cout << p.first << " ";
+	}
+	cout << endl;
+	*/
 
 	return 0;
 }
