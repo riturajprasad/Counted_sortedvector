@@ -31,11 +31,32 @@ public:
     void clear();
     int total_size() const;
     int unique_size() const;
+    counted_sortedvector& merge(const counted_sortedvector& csv)
+    {
+        if (this == &csv) {
+            for (auto& p : data)
+                p.second *= 2;
+            return *this;
+        }
+
+        for (const auto& p : csv)
+            for (int i = 0; i < p.second; ++i)
+                insert(p.first);
+        return *this;
+    }
 
     auto begin() { return data.begin(); }
     auto end() { return data.end(); }
     auto begin() const { return data.begin(); }
     auto end() const { return data.end(); }
+
+    friend ostream& operator<<(ostream& out, const counted_sortedvector& csv)
+    {
+        for (const auto& p : csv)
+            for (int i = 0; i < p.second; ++i)
+                cout << p.first << " ";
+        return out;
+    }
 };
 
 template <class T>

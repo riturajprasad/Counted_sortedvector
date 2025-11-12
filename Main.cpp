@@ -32,23 +32,36 @@ ostream& operator<<(ostream& out, const A& a2) {
 int main()
 {
 	// Test 2 pass if class give three operator code of "<" ; "==" ; "<<" ;
-	counted_sortedvector<A> av;
+	counted_sortedvector<A> av1;
 	A a1(1, 1.3);
 	A a2(4, 4.7);
 	A a3(1, 1.3);
 	A a4(3, 3.1);
-	av.insert(a1);
-	av.insert(a2);
-	av.insert(a3);
-	av.insert(a4);
+	av1.insert(a1);
+	av1.insert(a2);
+	av1.insert(a3);
+	av1.insert(a4);
 	//av.eraseall(a1);
-	for (const auto& p : av) {
-		for (int i = 0; i < p.second; i++)
-			cout << p.first << " ";
+	cout << av1 << endl;
+	for (auto& p : av1) {
+		cout << "[" << p.first << " x" << p.second << "]  ";
 	}
 	cout << endl;
 
-	for (auto& p : av) {
+	counted_sortedvector<A> av2;
+	A a5(2, 2.3);
+	A a6(4, 4.7);
+	A a7(1, 1.3);
+	A a8(3, 3.1);
+	av2.insert(a5);
+	av2.insert(a6);
+	av2.insert(a7);
+	av2.insert(a8);
+
+	av2.merge(av1);
+	av2.eraseall(a1);
+	cout << av2 << endl;
+	for (auto& p : av2) {
 		cout << "[" << p.first << " x" << p.second << "]  ";
 	}
 	cout << endl;
@@ -69,37 +82,21 @@ int main()
 		cout << 3 << " Not found" << endl;
 	cout << "Count of " << 3 << " is " << csv1.count(3) << endl;
 	cout << "Print all value: " << endl;
-	for (const auto& p : csv1) {
-		for (int i = 0; i < p.second; i++)
-			cout << p.first << " ";
-	}
-	cout << endl;
+	cout << av << endl;
 	cout << "Total size = " << csv1.total_size() << endl;
 	cout << "Unique size = " << csv1.unique_size() << endl;
 
 	csv1.erase(1);
 	cout << "Print all value (after erase(1)): " << endl;
-	for (const auto& p : csv1) {
-		for (int i = 0; i < p.second; i++)
-			cout << p.first << " ";
-	}
-	cout << endl;
+	cout << av << endl;
 
 	csv1.eraseall(3);
 	cout << "Print all value (after eraseall(3)): " << endl;
-	for (const auto& p : csv1) {
-		for (int i = 0; i < p.second; i++)
-			cout << p.first << " ";
-	}
-	cout << endl;
+	cout << av << endl;
 
 	csv1.clear();
 	cout << "Print all value (after clear()): " << endl;
-	for (const auto& p : csv1) {
-		for (int i = 0; i < p.second; i++)
-			cout << p.first << " ";
-	}
-	cout << endl;
+	cout << av << endl;
 	*/
 
 	return 0;
